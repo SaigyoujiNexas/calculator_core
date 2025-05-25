@@ -5,8 +5,8 @@ pub enum CalcError {
     UnexpectedChar(char),
     #[error("Invalid operator: {0}")]
     InvalidOperator(String),
-    #[error("Undeclard method: {0}")]
-    UndeclardMethod(String),
+    #[error("Undeclared method: {0}")]
+    UndeclaredMethod(String),
     #[error("Illegal method arguments: {0}")]
     IllegalMethodArgument(String)
 }

@@ -1,6 +1,5 @@
 use rust_decimal::{
-    Decimal,
-    prelude::{FromPrimitive, ToPrimitive},
+    prelude::{FromPrimitive, ToPrimitive}, Decimal, MathematicalOps
 };
 
 use crate::error::{CalcError, CalcResult};
@@ -22,16 +21,7 @@ impl Function for Cos {
                 params.len()
             )));
         }
-        let param = params.first().unwrap();
-        let val = param
-            .eval()
-            ?.to_f64()
-            .ok_or_else(|| {
-                CalcError::IllegalMethodArgument("Illegal number of arguments, expected float".to_string())
-            })?
-            .cos();
-
-        Ok(Decimal::from_f64(val).unwrap())
+        Ok(params.first().unwrap().eval()?.cos())
     }
     fn as_any(&self) -> &dyn std::any::Any {
         self

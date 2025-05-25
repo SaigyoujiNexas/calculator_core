@@ -1,6 +1,5 @@
 use rust_decimal::{
-    Decimal,
-    prelude::{FromPrimitive, ToPrimitive},
+    Decimal, MathematicalOps
 };
 
 use crate::{
@@ -24,11 +23,7 @@ impl Function for Sin {
                 params.len()
             )));
         }
-        let param =
-            params.first().unwrap().eval()?.to_f64().ok_or_else(|| {
-                CalcError::IllegalMethodArgument("Illegal number type".to_string())
-            })?;
-        Ok(Decimal::from_f64(param.sin()).unwrap())
+        return Ok(params.first().unwrap().eval()?.sin());
     }
     fn as_any(&self) -> &dyn std::any::Any {
         self
